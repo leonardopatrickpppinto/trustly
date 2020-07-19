@@ -30,16 +30,33 @@ public class RepositoryResource  {
 	
 	@Autowired
 	RepositoryRepository repositoryRepository;
-	
+	/**
+	 * Receives the owner and the repository.
+	 * Before accessing GitHub by Scrapping, 
+	 * check if you already have it in the database in memory or if there is a processing in progress.
+	 * If there is a processing for the directory in question, the application awaits termination.
+	 * The param <owner> receives the owner of the github repository 
+	 * @param owner
+	 * @param nameRepository
+	 * @return List<Repositories>
+	 * @throws Exception
+	 */
 	@GetMapping("/repository/{owner}/{nameRepository}")
 	public Iterable<Repositories> findRepositoryByName(@PathVariable(value = "owner") String owner, @PathVariable(value = "nameRepository") String nameRepository) throws Exception {
 		String nomeRepositoryFull= "/"+owner.trim()+"/"+nameRepository.trim();
 		
+		/**
+		 * As long as we have a processing for that repository being processed,
+		 *  we wait for no other concurrent processing to be done
+		 */
 		while(GitHubScraping.inProcess.contains(nomeRepositoryFull)) {
 			System.out.println("Waiting...");
 			TimeUnit.SECONDS.sleep(1);
 		}
 		
+		/**
+		 * Check if we already have some processing finished in memory
+		 */
 		if(GitHubScraping.finalized.contains(nomeRepositoryFull)) {
 			
 			List<Repositories> repositoriesList = new ArrayList<Repositories>();
@@ -50,7 +67,11 @@ public class RepositoryResource  {
 			repositoriesList.add(repositories);
 			return repositoriesList;
 		}
-	
+		/**
+		 * If there is processing in the database it is returned
+		 * If there is processing in the database, 
+		 * it is returned if there is no connection and processing
+		 */
 		if(repositoryRepository.findByNameRepository(nomeRepositoryFull).size()==0) {
 			
 			List<Repositories> repositoriesList = new ArrayList<Repositories>();

@@ -12,7 +12,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import br.com.trustly.model.User;
 import br.com.trustly.repository.UserRepository;
-
+/**
+ * Class responsible for access control, but to facilitate control and, 
+ * as there is no request in the requirement, it was disability
+ * @author Leonardo Patrick
+ *
+ */
 public class CustomUserDetailService implements UserDetailsService{
 	private final UserRepository userRepository;
 	

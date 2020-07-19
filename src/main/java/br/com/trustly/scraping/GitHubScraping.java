@@ -8,13 +8,25 @@ import java.util.Map;
 import br.com.trustly.model.Category;
 import br.com.trustly.model.Files;
 
+/**
+ * Processing class from Scraping to GitHub
+ * @author Leonardo Patrick
+ *
+ */
 public class GitHubScraping {
 
 	private static String BASE_URL="https://github.com";
 	public static ArrayList<String> inProcess = new ArrayList<String>();
 	public static ArrayList<String> finalized = new ArrayList<String>();
 	public static HashMap<String , List<Category>> bd = new  HashMap<String , List<Category>>();
-	
+	/**
+	 * Method receives the path of the GitHub repository
+	 * and returns an object containing all categories with totalizer lines,
+	 * totalizer bytes and the categories, which are the file types
+	 * @param nameRepository
+	 * @return Category list object (Types)
+	 * @throws Exception
+	 */
 	public static List<Category> Factory(String nameRepository) throws Exception {
 		
 		ArrayList<String> urldirectories = new ArrayList<String>();
@@ -67,10 +79,15 @@ public class GitHubScraping {
 		 return processFiles(nameRepository, urlFiles);
 	 }
 	
-	 private static List<Category> processFiles(String nameRepository, 	ArrayList<String> urlFiles) throws Exception {
-		 System.out.println("---Files ---");
-		 System.out.println("Qtd Files: "+ urlFiles.size());
-		 System.out.print("nameRepository: "+ nameRepository);
+	/**
+	 * Method receives the name of the repository and the file url,
+	 * processes the bytes and lines, and adds the category
+	 * @param nameRepository
+	 * @param urlFiles
+	 * @return List<Category>
+	 * @throws Exception
+	 */
+	private static List<Category> processFiles(String nameRepository, 	ArrayList<String> urlFiles) throws Exception {
 		 
 		 CategoryRepository categoryRepository = new CategoryRepository();
 		 for(String urlFile: urlFiles) {
@@ -92,6 +109,12 @@ public class GitHubScraping {
 		 return bd.get(nameRepository);
 	 }	 
 	
+	/**
+	 * Object adds to ArrayList if it is not contained
+	 * @param theOld
+	 * @param exists
+	 * @return theNew - Return the new Arraylist
+	 */
 	 private static ArrayList<String> addIfNot(ArrayList<String> theOld, ArrayList<String> exists){
 		 ArrayList<String> theNew = new ArrayList<String>();
 		 for(String o : theOld ) {
@@ -102,6 +125,11 @@ public class GitHubScraping {
 		 return theNew;
 	 }
 	
+	 /**
+	  * Object filters only directories, based on the type found in the scrapping
+	  * @param links
+	  * @return Returns filtered arraylist
+	  */
 	 private static ArrayList<String> filterDirectory(ArrayList<String[]> links) {
 		 ArrayList<String> d = new ArrayList<String>();		 
 		 
@@ -113,6 +141,11 @@ public class GitHubScraping {
 		return d;
 	 }
 	
+	 /**
+	  * Object filters only files, based on the type found in the scrapping
+	  * @param links
+	  * @return Returns filtered arraylist
+	  */
 	 private static ArrayList<String> filterFiles(ArrayList<String[]> links) {
 		 ArrayList<String> d = new ArrayList<String>();	 
 		 for(String[] l: links) {
@@ -123,6 +156,11 @@ public class GitHubScraping {
 		return d;
 	 }
 	 
+	 /**
+	  * Returns the file extension
+	  * @param name
+	  * @return type
+	  */
 	 private static String getType(String name) {
 		 String type = "";
 		 if(name.lastIndexOf(".")>0) {
@@ -134,8 +172,13 @@ public class GitHubScraping {
 		 return type;
 	 }
 	 
-	 private static String getName(String URLF) {
-		 return URLF.substring(URLF.lastIndexOf("/"), URLF.length());
+	 /**
+	  * Receives the url and resumes the file name
+	  * @param url
+	  * @return
+	  */
+	 private static String getName(String url) {
+		 return url.substring(url.lastIndexOf("/"), url.length());
 	 }
 	 
 

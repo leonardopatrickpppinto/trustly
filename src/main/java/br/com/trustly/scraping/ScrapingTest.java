@@ -3,6 +3,11 @@ package br.com.trustly.scraping;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * Responsible for checking if the path exists after three connection attempts
+ * @author Leonardo Patrick
+ *
+ */
 public class ScrapingTest {
 	public ScrapingTest (String url) throws Exception {
 		this(new URL(url));

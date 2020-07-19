@@ -7,10 +7,19 @@ import java.util.Map;
 import br.com.trustly.model.Category;
 import br.com.trustly.model.Files;
 
+/**
+ * Responsible for storing categories
+ * @author Leonardo Patrick
+ *
+ */
 public class CategoryRepository {
 	
 	private Map<String, Category> categories = new HashMap<String, Category>();
-	
+	/**
+	 * Receive the object file and bits in string by adding the category to the repository or updating
+	 * @param file
+	 * @param bitsLine
+	 */
 	public  void addCategory(Files file, String bitsLine) {
 		addCategory(
 				file.getNameRepository(),
