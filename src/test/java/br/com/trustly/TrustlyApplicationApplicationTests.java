@@ -20,7 +20,11 @@ import br.com.trustly.repository.CategoriesRepository;
 import br.com.trustly.repository.FilesRepository;
 import br.com.trustly.repository.RepositoryRepository;
 import br.com.trustly.scraping.GitHubScraping;
-
+/**
+ * Class of unit tests
+ * @author Leonardo Patrick
+ *
+ */
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -37,7 +41,10 @@ public class TrustlyApplicationApplicationTests {
 		
 		@Rule
 		public ExpectedException thrown = ExpectedException.none();
-		
+		/**
+		 * Test whether the will return a repository
+		 * @throws Exception
+		 */
 		@Test
 		public void testRepositoryRocketSeat() throws Exception {
 
@@ -46,7 +53,10 @@ public class TrustlyApplicationApplicationTests {
 			
 			assertThat(list.size()).isEqualTo(1);
 		}
-		
+		/**
+		 * Tests whether the specific repository will return the number of categories expected
+		 * @throws Exception
+		 */
 		@Test
 		public void testRepositoryRocketSeatCategory() throws Exception {
 			String repository="/Rocketseat/react-native-template-rocketseat-advanced";
@@ -59,6 +69,10 @@ public class TrustlyApplicationApplicationTests {
 					).isEqualTo(8);
 		}
 		
+		/**
+		 * Tests whether the specific repository will return to expected files
+		 * @throws Exception
+		 */
 		@Test
 		public void testRepositoryRocketSeatFiles() throws Exception {
 			String repository="/Rocketseat/react-native-template-rocketseat-advanced";
