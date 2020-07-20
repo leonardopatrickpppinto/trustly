@@ -27,7 +27,7 @@ public class GitHubScraping {
 	 * @return Category list object (Types)
 	 * @throws Exception
 	 */
-	public static List<Category> Factory(String nameRepository) throws Exception {
+	public static List<Category> factory(String nameRepository) throws Exception {
 		
 		ArrayList<String> urldirectories = new ArrayList<String>();
 		ArrayList<String> urlFiles = new ArrayList<String>();

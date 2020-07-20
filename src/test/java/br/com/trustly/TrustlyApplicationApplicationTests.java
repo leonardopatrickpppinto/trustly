@@ -51,7 +51,7 @@ public class TrustlyApplicationApplicationTests {
 		public void testRepositoryRocketSeatCategory() throws Exception {
 			String repository="/Rocketseat/react-native-template-rocketseat-advanced";
 			
-			List<Category> categories = GitHubScraping.Factory(repository);
+			List<Category> categories = GitHubScraping.factory(repository);
 			
 			System.out.println("Qtd: " + categories.size());
 			assertThat(
@@ -63,7 +63,7 @@ public class TrustlyApplicationApplicationTests {
 		public void testRepositoryRocketSeatFiles() throws Exception {
 			String repository="/Rocketseat/react-native-template-rocketseat-advanced";
 			
-			List<Category> categories = GitHubScraping.Factory(repository);
+			List<Category> categories = GitHubScraping.factory(repository);
 			int totFiles = 0;
 			for(Category c : categories) {
 				totFiles = totFiles + c.getFiles().size();
@@ -99,7 +99,7 @@ public class TrustlyApplicationApplicationTests {
 				repositories.setNameRepository(nomeRepositoryFull);
 				repositoryRepository.save(repositories);
 				
-				List<Category> categories = GitHubScraping.Factory(nomeRepositoryFull);
+				List<Category> categories = GitHubScraping.factory(nomeRepositoryFull);
 				
 				for(Category c : categories) {
 					filesRepository.saveAll(c.getFiles());

@@ -79,4 +79,12 @@ public class ScrapingGitHubFiles extends Scraping {
 		return bitsLine;
 	}
 	
+	/**
+	 * Returns the file
+	 * @return
+	 */
+	public Files getFiles() {
+		return files;
+	}
+	
 }

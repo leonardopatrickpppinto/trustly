@@ -68,9 +68,8 @@ public class RepositoryResource  {
 			return repositoriesList;
 		}
 		/**
-		 * If there is processing in the database it is returned
-		 * If there is processing in the database, 
-		 * it is returned if there is no connection and processing
+		 * if there is no database and it is not processed in memory, 
+		 * a connection and processing will be performed through the Github website
 		 */
 		if(repositoryRepository.findByNameRepository(nomeRepositoryFull).size()==0) {
 			
@@ -80,7 +79,7 @@ public class RepositoryResource  {
 			repositories.setNameRepository(nomeRepositoryFull);
 			repositoryRepository.save(repositories);
 			
-			List<Category> categories = GitHubScraping.Factory(nomeRepositoryFull);
+			List<Category> categories = GitHubScraping.factory(nomeRepositoryFull);
 			
 			for(Category c : categories) {
 				filesRepository.saveAll(c.getFiles());
