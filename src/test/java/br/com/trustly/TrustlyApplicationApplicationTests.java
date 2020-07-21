@@ -73,7 +73,7 @@ public class TrustlyApplicationApplicationTests {
 		 * Tests whether the specific repository will return to expected files
 		 * @throws Exception
 		 */
-		@Test
+	@Test
 		public void testRepositoryRocketSeatFiles() throws Exception {
 			String repository="/Rocketseat/react-native-template-rocketseat-advanced";
 			

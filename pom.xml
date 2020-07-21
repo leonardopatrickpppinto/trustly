@@ -16,7 +16,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Trustly</name>
 	<description>Trustly</description>
-
+	<packaging>war</packaging>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -44,6 +44,11 @@
 		 <version>11.2.0.3</version>
 		</dependency>
 	
+	<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-tomcat</artifactId>
+	<scope>provided</scope>
+</dependency>
 	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -139,6 +144,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+	
 		</plugins>
 	</build>
 

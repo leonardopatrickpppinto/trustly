@@ -17,7 +17,7 @@ public class Category {
 
 		private String nameRepository;
 	    
-		private Integer linhas =0;
+		private Integer line =0;
 		
 		private Double bytes = 0.0D;
 
@@ -27,12 +27,12 @@ public class Category {
 		@JoinColumn(name="nameRepository")
 		private List<Files> files = new ArrayList<Files>();
 		
-		public Integer getLinhas() {
-			return linhas;
+		public Integer getLine() {
+			return line;
 		}
 
-		public void setLinhas(Integer linhas) {
-			this.linhas = linhas;
+		public void setLine(Integer linhas) {
+			this.line = linhas;
 		}
 
 		public Double getBytes() {

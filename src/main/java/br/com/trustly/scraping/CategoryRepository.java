@@ -35,7 +35,7 @@ public class CategoryRepository {
 			 Category category = categories.get(type);
 			 category.setBytes(category.getBytes() + bytes);
 			 category.setQtd(category.getQtd() +1);
-			 category.setLinhas(category.getLinhas() + linhas);
+			 category.setLine(category.getLine() + linhas);
 			 category.setNameRepository(nameRepository);
 			 
 			 List<Files> files = categories.get(type).getFiles();
@@ -46,13 +46,13 @@ public class CategoryRepository {
 		 }else {
 			Category category = new Category();
 			category.setType(type);
-			
+			category.setNameRepository(nameRepository);
 			ArrayList<Files> f= new ArrayList<Files>();
 			f.add(file);
 			
 			category.setFiles(f);
 			category.setBytes(bytes);
-			category.setLinhas(linhas);
+			category.setLine(linhas);
 			category.setQtd(1);
 			categories.put(type, category);
 		}
